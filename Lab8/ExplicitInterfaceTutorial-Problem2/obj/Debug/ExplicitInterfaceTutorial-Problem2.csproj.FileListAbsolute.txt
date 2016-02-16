@@ -1,0 +1,6 @@
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\ExplicitInterfaceTutorial-Problem2\bin\Debug\ExplicitInterfaceTutorial-Problem2.exe.config
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\ExplicitInterfaceTutorial-Problem2\bin\Debug\ExplicitInterfaceTutorial-Problem2.exe
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\ExplicitInterfaceTutorial-Problem2\bin\Debug\ExplicitInterfaceTutorial-Problem2.pdb
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\ExplicitInterfaceTutorial-Problem2\obj\Debug\ExplicitInterfaceTutorial-Problem2.csprojResolveAssemblyReference.cache
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\ExplicitInterfaceTutorial-Problem2\obj\Debug\ExplicitInterfaceTutorial-Problem2.exe
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\ExplicitInterfaceTutorial-Problem2\obj\Debug\ExplicitInterfaceTutorial-Problem2.pdb

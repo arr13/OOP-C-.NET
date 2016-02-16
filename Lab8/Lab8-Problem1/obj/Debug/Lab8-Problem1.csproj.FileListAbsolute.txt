@@ -1,0 +1,2 @@
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\Lab8-Problem1\bin\Debug\Lab8-Problem1.exe.config
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\Lab8-Problem1\bin\Debug\Lab8_Problem1.exe.config

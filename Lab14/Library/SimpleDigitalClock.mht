@@ -1,0 +1,1621 @@
+From: <Saved by Windows Internet Explorer 7>
+Subject: PublicJoe's - C# Tutorial 1.1 - Simple Digital Clock - Part 1
+Date: Tue, 29 Jan 2008 22:03:41 +0200
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0000_01C862C2.CF01FA90"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3198
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01C862C2.CF01FA90
+Content-Type: text/html;
+	charset="windows-1251"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.publicjoe.f9.co.uk/csharp/csharp12.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>PublicJoe's - C# Tutorial 1.1 - Simple Digital Clock =
+- Part 1</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1251"><LINK=20
+href=3D"http://www.publicjoe.f9.co.uk/style.css" rel=3Dstylesheet>
+<META content=3D"MSHTML 6.00.6000.16587" name=3DGENERATOR></HEAD>
+<BODY bgColor=3Dwhite>
+<SCRIPT language=3DJavaScript =
+src=3D"http://www.publicjoe.f9.co.uk/menu_array1.js"=20
+type=3Dtext/javascript></SCRIPT>
+
+<SCRIPT language=3DJavaScript =
+src=3D"http://www.publicjoe.f9.co.uk/mmenu.js"=20
+type=3Dtext/javascript></SCRIPT>
+
+<TABLE border=3D0>
+  <TBODY>
+  <TR>
+    <TD width=3D110></TD>
+    <TD width=3D650>
+      <CENTER>
+      <H1>C# Tutorial 1.1 - Simple Digital Clock - Part 1</H1></CENTER>
+      <HR color=3D#66ccff>
+
+      <P>Although this application may look complicated, it consists of =
+only two=20
+      components, a label, upon which is displayed the current time =
+according to=20
+      the system clock, and a timer, running at a one second =
+interval.</P>
+      <P><IMG=20
+      =
+src=3D"http://www.publicjoe.f9.co.uk/csharp/images/digitalclock.jpg"></P>=
+
+      <P><B>Figure 12-1</B> - Simple Digital Clock</P>
+      <P>You can download the file <A=20
+      =
+href=3D"http://www.publicjoe.f9.co.uk/csharp/code/clock/digitalclock.cs">=
+digitalclock.cs</A>=20
+      from the link, or you can download my copy of the executable from =
+<A=20
+      =
+href=3D"http://www.publicjoe.f9.co.uk/csharp/code/clock/digitalclock.exe"=
+>here</A>.=20
+      If you have Visual Studio, you can download the solution <A=20
+      =
+href=3D"http://www.publicjoe.f9.co.uk/csharp/code/clock/digitalclock.zip"=
+>here</A>.</P>
+      <H3>The Code</H3>
+      <P>In C#, there are two timer classes, one in the=20
+      <TT>System.Threading</TT> namespace and one in=20
+      <TT>System.Windows.Forms</TT> namespace. A timer is used to raise =
+an event=20
+      at a user-defined interval. The <TT>System.Windows.Forms</TT> =
+timer is=20
+      optimized for use in Windows Forms applications and must be used =
+in a=20
+      window.</P>
+      <P>Firstly we instantiate a timer, then we set up the timer =
+interval we=20
+      need. This is measured in milliseconds, in our case the value 1000 =
+gives 1=20
+      second. The next thing to do is start the timer. Finally we add =
+the event=20
+      handler, passing it the method to call when the timer expires.</P>
+      <P>Once we have set the label up, we use the <TT>GetTime()</TT> =
+method to=20
+      put the current time in the labels <TT>Text</TT> property.</P>
+      <P><B>Listing 12-1</B> - Initialize Components</P>
+      <P>
+      <TABLE width=3D650 bgColor=3D#dddddd>
+        <TBODY>
+        <TR>
+          <TD><FONT face=3D"courier new"><FONT color=3D#0000ff>private =
+void</FONT>=20
+            InitializeComponent()<BR>{<BR>&nbsp;&nbsp;<FONT=20
+            color=3D#0000ff>this</FONT>.components =3D <FONT=20
+            color=3D#0000ff>new</FONT>=20
+            System.ComponentModel.Container();<BR><BR>&nbsp;&nbsp;<FONT=20
+            color=3D#008000>// Set up Form</FONT><BR>&nbsp;&nbsp;<FONT=20
+            color=3D#0000ff>this</FONT>.Size =3D <FONT =
+color=3D#0000ff>new</FONT>=20
+            Size( 144, 68 );<BR>&nbsp;&nbsp;<FONT=20
+            color=3D#0000ff>this</FONT>.MaximizeBox =3D <FONT=20
+            color=3D#0000ff>false</FONT>;<BR>&nbsp;&nbsp;<FONT=20
+            color=3D#0000ff>this</FONT>.Name =3D =
+"MyClock";<BR>&nbsp;&nbsp;<FONT=20
+            color=3D#0000ff>this</FONT>.Text =3D =
+"Clock";<BR>&nbsp;&nbsp;<FONT=20
+            color=3D#0000ff>this</FONT>.FormBorderStyle =3D=20
+            FormBorderStyle.FixedSingle;<BR><BR>&nbsp;&nbsp;<FONT=20
+            color=3D#008000>// Instantiate =
+components</FONT><BR>&nbsp;&nbsp;timer1=20
+            =3D <FONT color=3D#0000ff>new</FONT> =
+Timer();<BR>&nbsp;&nbsp;label1 =3D=20
+            <FONT color=3D#0000ff>new</FONT> =
+Label();<BR><BR>&nbsp;&nbsp;<FONT=20
+            color=3D#008000>// Setup =
+timer</FONT><BR>&nbsp;&nbsp;timer1.Interval =3D=20
+            =
+1000;<BR>&nbsp;&nbsp;timer1.Start();<BR>&nbsp;&nbsp;timer1.Tick +=3D=20
+            <FONT color=3D#0000ff>new</FONT>=20
+            EventHandler(Timer_Tick);<BR><BR>&nbsp;&nbsp;<FONT =
+color=3D#008000>//=20
+            Setup label</FONT><BR>&nbsp;&nbsp;label1.BackColor =3D=20
+            Color.Black;<BR>&nbsp;&nbsp;label1.ForeColor =3D=20
+            Color.Lime;<BR>&nbsp;&nbsp;label1.Font =3D <FONT=20
+            color=3D#0000ff>new</FONT> Font( "Arial", 24F,=20
+            FontStyle.Regular,<BR>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp;=20
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+GraphicsUnit.Point,=20
+            ((System.Byte)(128)));<BR>&nbsp;&nbsp;label1.Size =3D <FONT=20
+            color=3D#0000ff>new</FONT> Size( 140, 45 =
+);<BR><BR>&nbsp;&nbsp;<FONT=20
+            color=3D#008000>// Show current time on=20
+            label</FONT><BR>&nbsp;&nbsp;label1.Text =3D=20
+            GetTime();<BR><BR>&nbsp;&nbsp;<FONT=20
+            color=3D#0000ff>this</FONT>.Controls.Add( label1 =
+);<BR>}</FONT>=20
+        </TD></TR></TBODY></TABLE></P>
+      <P>In order to get the current time, we use the =
+<TT>System.DateTime</TT>=20
+      structure. By accessing the <TT>Now</TT> property, this contains =
+the=20
+      current time according to the system clock. Within this we can get =
+the=20
+      <TT>Hour</TT>, <TT>Minute</TT> and <TT>Second</TT> so that we can =
+format=20
+      them into a string to be displayed.</P>
+      <P>The keyword <TT>string</TT> is simply an alias for the =
+predefined class=20
+      <TT>System.String</TT>. To build up our string, we use string=20
+      concatenation in the form of <TT>+</TT>, this simply adds what is =
+on the=20
+      right hand side of <TT>+</TT> to the end of the string on the left =
+hand=20
+      side.</P>
+      <P><B>Listing 12-2</B> - Get Current Time</P>
+      <P>
+      <TABLE width=3D650 bgColor=3D#dddddd>
+        <TBODY>
+        <TR>
+          <TD><FONT face=3D"courier new"><FONT color=3D#0000ff>public=20
+            string</FONT> GetTime()<BR>{<BR>&nbsp;&nbsp;<FONT=20
+            color=3D#0000ff>string</FONT> TimeInString =3D=20
+            "";<BR><BR>&nbsp;&nbsp;<FONT color=3D#008000>// Get current=20
+            time</FONT><BR>&nbsp;&nbsp;<FONT color=3D#0000ff>int</FONT> =
+hour =3D=20
+            DateTime.Now.Hour;<BR>&nbsp;&nbsp;<FONT =
+color=3D#0000ff>int</FONT> min=20
+            =3D DateTime.Now.Minute;<BR>&nbsp;&nbsp;<FONT =
+color=3D#0000ff>int</FONT>=20
+            sec =3D DateTime.Now.Second;<BR><BR>&nbsp;&nbsp;<FONT =
+color=3D#008000>//=20
+            Format current time into =
+string</FONT><BR>&nbsp;&nbsp;TimeInString =3D=20
+            (hour &lt; 10) ? "0" + hour.ToString() :=20
+            hour.ToString();<BR>&nbsp;&nbsp;TimeInString +=3D ":" + ( =
+(min&lt;10)=20
+            ? "0" + min.ToString() : min.ToString()=20
+            );<BR>&nbsp;&nbsp;TimeInString +=3D ":" + ( (sec&lt;10) ? =
+"0" +=20
+            sec.ToString() : sec.ToString() );<BR><BR>&nbsp;&nbsp;<FONT=20
+            color=3D#0000ff>return</FONT> TimeInString;<BR>}</FONT>=20
+      </TD></TR></TBODY></TABLE></P>
+      <P>In the previous code, we use an alternative form of <TT>if() . =
+. .=20
+      else</TT> statement in the form of <TT>() ? :</TT>. For more =
+information=20
+      click <A =
+href=3D"http://www.publicjoe.f9.co.uk/csharp/cs12a.html">here</A>.=20
+      The previous code also shows the use of <A=20
+      =
+href=3D"http://www.publicjoe.f9.co.uk/csharp/cs12b.html">concatenation =
+for=20
+      strings</A>.</P>
+      <P>Finally, the method that will be called when the timer event =
+happens.=20
+      This method will be called every 1000 milliseconds. In order to =
+make sure=20
+      that the screen is redrawn, we call the <TT>Invalidate()</TT> =
+method.</P>
+      <P><B>Listing 12-3</B> - Check Timer</P>
+      <P>
+      <TABLE width=3D650 bgColor=3D#dddddd>
+        <TBODY>
+        <TR>
+          <TD><FONT face=3D"courier new"><FONT color=3D#0000ff>public =
+void</FONT>=20
+            Timer_Tick( <FONT color=3D#0000ff>object</FONT> sender, =
+EventArgs=20
+            eArgs )<BR>{<BR>&nbsp;&nbsp;<FONT color=3D#0000ff>if</FONT>( =
+sender =3D=3D=20
+            timer1 =
+)<BR>&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;label1.Text =3D=20
+            =
+GetTime();<BR>&nbsp;&nbsp;&nbsp;&nbsp;Invalidate();<BR>&nbsp;&nbsp;}<BR>}=
+</FONT>=20
+          </TD></TR></TBODY></TABLE></P>
+      <H3>Invalidation</H3>
+      <P>To redraw the screen we call the <TT>Invalidate()</TT> method =
+of the=20
+      <TT>Form</TT> class, which derives from=20
+      <TT>System.Windows.Forms.Control</TT>. This is turn will cause the =
+
+      <TT>OnPaint()</TT> method to be called.</P>
+      <HR color=3D#66ccff>
+
+      <H3>References</H3>
+      <P>For more information on the <TT>TextBox</TT> class, visit MSDN =
+at=20
+      microsoft <A=20
+      =
+href=3D"http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemWin=
+dowsFormsTextBoxClassTopic.asp"=20
+      target=3D_new>here</A>.</P>
+      <P>For more information on the <TT>System.Windows.Forms.Timer</TT> =
+class,=20
+      visit MSDN at microsoft <A=20
+      =
+href=3D"http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemWin=
+dowsFormsTimerClassTopic.asp"=20
+      target=3D_new>here</A>.</P>
+      <P>For more information on the <TT>System.String</TT> class, visit =
+MSDN at=20
+      microsoft <A=20
+      =
+href=3D"http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemStr=
+ingClassTopic.asp"=20
+      target=3D_new>here</A>.</P>
+      <P>For more information on the <TT>DateTime</TT> Structure, visit =
+MSDN at=20
+      microsoft <A=20
+      =
+href=3D"http://msdn.microsoft.com/library/en-us/cpref/html/frlrfSystemDat=
+eTimeClassTopic.asp"=20
+      target=3D_new>here</A>.</P>
+      <H3>What Next?</H3>
+      <P>In the next part, we will add seeing the clock in the <A=20
+      =
+href=3D"http://www.publicjoe.f9.co.uk/csharp/csharp13.html">taskbar</A> =
+when=20
+      minimised.</P>
+      <P>Return to the <A=20
+      href=3D"http://www.publicjoe.f9.co.uk/csharp/tut.html">Tutorial=20
+      Contents</A>.</P></TD></TR></TBODY></TABLE></BODY></HTML>
+
+------=_NextPart_000_0000_01C862C2.CF01FA90
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Location: http://www.publicjoe.f9.co.uk/csharp/images/digitalclock.jpg
+
+/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEP
+ERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4e
+Hh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCABEAJADASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDI8beP
+/EPxQ8T3c1vFf32lpKXsdNjiYpDCpIR3iUsDJh/mfnliAduAKtto+tRgZ8GTk++mN/hXL/DloYNE
+1dri3kuI2sIozGkwiJLXduo+Yq2MEg/dPH517T8A7vwvLFcHU7Wwt7SFrpEXU7iO4Rpf9DOVLxoM
+7WIxtzw3OK/ReJeKKPCuEnyU0/Zq6jazasr2d9/lva7Vz5fDcMYrNKbxzv7Pm5XK60lulbfY8+1E
+X2nQLNf+GEtIi20PNYFFLcnGSOvB/Ksxtbts86Xp/wD4DrXpv7QDaLLak6CNMFtvtN32BYxHvxd5
+z5fG7GPfGK4fWtA8PeGdM0RNfGrXep6zpp1ICyljjSzhfcIMq6kys5UkjdHgZ5OOfQ4S4qpZ9lNH
+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
+H//Z
+
+------=_NextPart_000_0000_01C862C2.CF01FA90
+Content-Type: text/css;
+	charset="koi8-r"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.publicjoe.f9.co.uk/style.css
+
+BODY {
+	FONT: 10pt 'Comic Sans MS', Tahoma, Arial
+}
+TABLE {
+	FONT: 10pt 'Comic Sans MS', Tahoma, Arial
+}
+A {
+	FONT-WEIGHT: bold; COLOR: #ff9933; FONT-FAMILY: 'Comic Sans MS' , =
+Tahoma, Arial; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-WEIGHT: bold; COLOR: #ff0000; FONT-FAMILY: 'Comic Sans MS' , =
+Tahoma, Arial; TEXT-DECORATION: underline
+}
+H1 {
+	FONT: bold 14pt 'Comic Sans MS' , Tahoma, Arial; COLOR: #004080; =
+TEXT-DECORATION: none
+}
+H2 {
+	FONT: bold 12pt 'Comic Sans MS' , Tahoma, Arial; COLOR: #004080; =
+TEXT-DECORATION: none
+}
+H3 {
+	FONT: bold 10pt 'Comic Sans MS' , Tahoma, Arial; COLOR: #004080; =
+TEXT-DECORATION: none
+}
+H4 {
+	FONT: bold 9pt 'Comic Sans MS' , Tahoma, Arial; COLOR: #004080; =
+TEXT-DECORATION: none
+}
+PRE {
+	PADDING-RIGHT: 1em; PADDING-LEFT: 1em; LEFT: 1em; PADDING-BOTTOM: 1em; =
+MARGIN: 1em; OVERFLOW: scroll; WIDTH: 97%; COLOR: #333; PADDING-TOP: =
+1em; POSITION: relative; BACKGROUND-COLOR: #f7f7f7
+}
+TT {
+	COLOR: #0000ff; FONT-FAMILY: 'Courier New' , Courier, monospace
+}
+CODE {
+	COLOR: #0000ff; FONT-FAMILY: 'Courier New' , Courier, monospace
+}
+TD {
+	FONT-FAMILY: 'Comic Sans MS' , Tahoma, Arial
+}
+BLOCKQUOTE {
+	FONT-FAMILY: 'Comic Sans MS' , Tahoma, Arial
+}
+
+------=_NextPart_000_0000_01C862C2.CF01FA90
+Content-Type: application/x-js
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.publicjoe.f9.co.uk/menu_array1.js
+
+/*
+	 Milonic DHTML Website Navigation Menu
+	 Written by Andy Woolley - Copyright 2003 (c) Milonic Solutions =
+Limited. All Rights Reserved
+	 Please visit http://www.milonic.co.uk/ for more information
+
+	 Although this software may have been freely downloaded, you must =
+obtain a license before using it in any production environment
+	 The free use of this menu is only available to Non-Profit, Educational =
+& Personal Web Sites who have obtained a license to use=20
+	=20
+	 Free, Commercial and Corporate Licenses are available from our website =
+at http://www.milonic.co.uk/menu/supportcontracts.php
+	 You also need to include a link back to http://www.milonic.co.uk/ if =
+you use the free license
+	=20
+	 All Copyright notices MUST remain in place at ALL times
+	 If you cannot comply with all of the above requirements, please =
+contact us to arrange a license waiver
+*/
+
+
+
+//The following line is critical for menu operation, and MUST APPEAR =
+ONLY ONCE.
+menunum=3D0;menus=3Dnew Array();_d=3Ddocument;function =
+addmenu(){menunum++;menus[menunum]=3Dmenu;}function =
+dumpmenus(){mt=3D"<scr"+"ipt =
+language=3DJavaScript>";for(a=3D1;a<menus.length;a++){mt+=3D" =
+menu"+a+"=3Dmenus["+a+"];"}mt+=3D"<\/scr"+"ipt>";_d.write(mt)}
+//Please leave the above line intact. The above also needs to be enabled =
+if it not already enabled unless you have more than one _array.js file
+
+
+////////////////////////////////////
+// Editable properties START here //
+////////////////////////////////////
+
+timegap=3D500                   // The time delay for menus to remain =
+visible
+followspeed=3D5                 // Follow Scrolling speed
+followrate=3D50                 // Follow Scrolling Rate
+suboffset_top=3D5               // Sub menu offset Top position
+suboffset_left=3D10             // Sub menu offset Left position
+
+
+ScrollingSampStyle=3D[          // ScrollingSampStyle is an array of =
+properties. You can have as many property arrays as you need
+"666666",                     // Mouse Off Font Color
+"ffffff",                     // Mouse Off Background Color (use zero =
+for transparent in Netscape 6)
+"000000",                     // Mouse On Font Color
+"ff9933",                     // Mouse On Background Color
+"666666",                     // Menu Border Color
+"12",                         // Font Size (default is px but you can =
+specify mm, pt or a percentage)
+"normal",                     // Font Style (italic or normal)
+"normal",                     // Font Weight (bold or normal)
+"comic sans ms,verdana,helvetica",// Font Name
+3,                            // Menu Item Padding or spacing
+,                             // Sub Menu Image (Leave this blank if not =
+needed)
+0,                            // 3D Border & Separator bar
+,                             // 3D High Color
+,                             // 3D Low Color
+,                             // Current Page Item Font Color (leave =
+this blank to disable)
+,                             // Current Page Item Background Color =
+(leave this blank to disable)
+,                             // Top Bar image (Leave this blank to =
+disable)
+,                             // Menu Header Font Color (Leave blank if =
+headers are not needed)
+,                             // Menu Header Background Color (Leave =
+blank if headers are not needed)
+,                             // Menu Item Separator Color
+]
+
+
+addmenu(menu=3D[
+"FollowMain",                 // Menu Name - This is needed in order for =
+this menu to be called
+10,                           // Menu Top - The Top position of this =
+menu in pixels
+10,                           // Menu Left - The Left position of this =
+menu in pixels
+100,                          // Menu Width - Menus width in pixels
+1,                            // Menu Border Width
+,                             // Screen Position - here you can use =
+"center;left;right;middle;top;bottom" or a combination of =
+"center:middle"
+ScrollingSampStyle,           // Properties Array - this array is =
+declared higher up as you can see above
+1,                            // Always Visible - allows this menu item =
+to be visible at all time (1=3Don or 0=3Doff)
+,                             // Alignment - sets this menu elements =
+text alignment, values valid here are: left, right or center
+"Fade(duration=3D0.2);Shadow(color=3D777777, Direction=3D135, =
+Strength=3D5)",// Filter - Text variable for setting transitional =
+effects on menu activation - see above for more info
+10,                           // Follow Scrolling Top Position - Tells =
+this menu to follow the user down the screen on scroll placing the menu =
+at the value specified.
+0,                            // Horizontal Menu - Tells this menu to =
+display horizontaly instead of top to bottom style (1=3Don or 0=3Doff)
+0,                            // Keep Alive - Keeps the menu visible =
+until the user moves over another menu or clicks elsewhere on the page =
+(1=3Don or 0=3Doff)
+,                             // Position of TOP sub image =
+left:center:right
+,                             // Set the Overall Width of Horizontal =
+Menu to specified width or 100% and height to a specified amount
+0,                            // Right To Left - Used in Hebrew for =
+example. (1=3Don or 0=3Doff)
+0,                            // Open the Menus OnClick - leave blank =
+for OnMouseover (1=3Don or 0=3Doff)
+,                             // ID of the div you want to hide on =
+MouseOver (useful for hiding form elements)
+,                             // Background image for menu Color must be =
+set to transparent for this to work
+0,                            // Scrollable Menu
+,                             // Miscellaneous Menu Properties
+,"Home Page","../index.html",,,1
+,"C#","show-menu=3Dcsharp","#",,0
+,"C++","show-menu=3Dcpp","#",,0
+,"JavaScript","show-menu=3DJavaScript","#",,0
+,"Java","show-menu=3DJava","#",,0
+,"Visual Basic","show-menu=3Dvb","#",,1
+,"Milonic Menus","http://www.milonic.com",,,1
+])
+
+
+addmenu(menu=3D[
+"csharp",
+,
+,
+180,
+1,
+,
+ScrollingSampStyle,
+0,
+,
+"Fade(duration=3D0.2);Shadow(color=3D777777, Direction=3D135, =
+Strength=3D5)",
+0,
+0,
+0,
+,
+,
+0,
+0,
+,
+,
+0,
+,
+,"Home Page","../csharp/csharp.html",,,1
+,"Tutorial 1.1","../csharp/tut.html",,,1
+,"Tutorial 2.0","../csharp1/tut.html",,,1
+,"EBook","../csharp/samples/ebook.html",,,1
+,"Articles","../csharp/articles/articles.html",,,1
+,"Useful Info","../csharp/useful/useful.html",,,1
+,"Snippets","../csharp/snip/snippets.html",,,1
+,"Links","../csharp/links.html",,,1
+])
+
+
+addmenu(menu=3D[
+"cpp",
+,
+,
+180,
+1,
+,
+ScrollingSampStyle,
+0,
+,
+"Fade(duration=3D0.2);Shadow(color=3D777777, Direction=3D135, =
+Strength=3D5)",
+0,
+0,
+0,
+,
+,
+0,
+0,
+,
+,
+0,
+,
+,"Home Page","../cpp/cpp.html",,,1
+,"EBook","../cpp/samples/ebook.html",,,1
+,"Links","../cpp/links.html",,,1
+])
+
+
+addmenu(menu=3D[
+"Java",
+,
+,
+180,
+1,
+,
+ScrollingSampStyle,
+0,
+,
+"Fade(duration=3D0.2);Shadow(color=3D777777, Direction=3D135, =
+Strength=3D5)",
+0,
+0,
+0,
+,
+,
+0,
+0,
+,
+,
+0,
+,
+,"Home Page","../java/java.html",,,1
+,"EBook","../java/samples/ebook.html",,,1
+,"Links","../java/links.html",,,1
+])
+
+
+addmenu(menu=3D[
+"JavaScript",
+,
+,
+180,
+1,
+,
+ScrollingSampStyle,
+0,
+,
+"Fade(duration=3D0.2);Shadow(color=3D777777, Direction=3D135, =
+Strength=3D5)",
+0,
+0,
+0,
+,
+,
+0,
+0,
+,
+,
+0,
+,
+,"Home page","../javas/javas.html",,,1
+,"Links","../javas/links.html",,,1
+])
+
+
+addmenu(menu=3D[
+"vb",
+,
+,
+180,
+1,
+,
+ScrollingSampStyle,
+0,
+,
+"Fade(duration=3D0.2);Shadow(color=3D777777, Direction=3D135, =
+Strength=3D5)",
+0,
+0,
+0,
+,
+,
+0,
+0,
+,
+,
+0,
+,
+,"Home page","../vbnet/vbnet.html",,,1
+,"Tutorial","../vbnet/tut.html",,,1
+,"EBook","../vbnet/samples/ebook.html",,,1
+,"Links","../vbnet/links.html",,,1
+])
+
+
+dumpmenus();	
+------=_NextPart_000_0000_01C862C2.CF01FA90
+Content-Type: application/x-js
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.publicjoe.f9.co.uk/mmenu.js
+
+/*
+ Milonic DHTML Website Navigation Menu - Version 3.5.15
+ Written by Andy Woolley - Copyright 2003 (c) Milonic Solutions Limited. =
+All Rights Reserved.
+ Please visit http://www.milonic.co.uk/menu/ for more information.
+
+ The Free use of this menu is only available to Non-Profit, Educational =
+& Personal web sites.
+ Commercial and Corporate licenses  are available for use on all other =
+web sites & Intranets.
+ All Copyright notices MUST remain in place at ALL times and, please =
+keep us informed of your
+ intentions to use the menu and send us your URL.
+=20
+   ******* PLEASE NOTE: THIS IS NOT FREE SOFTWARE, IT MUST BE LICENSED =
+FOR ALL USE. *******
+*/
+
+Mtimer=3DsetTimeout("rep_img()",99999);_d=3Ddocument;smc=3D-1;MLoaded=3D0=
+;ST=3D0;mspu=3D0;pu=3D0;
+ns4=3D(_d.layers)?true:false
+ns6=3D(navigator.userAgent.indexOf("Gecko")!=3D-1)?true:false
+mac=3D(navigator.appVersion.indexOf("Mac")!=3D-1)?true:false
+mac45=3D(navigator.appVersion.indexOf("MSIE 4.5")!=3D-1)?true:false
+if(ns6||ns4)mac=3Dfalse
+
+loadWait=3D0;
+
+opra=3D(navigator.userAgent.indexOf("Opera")!=3D-1)?true:false
+if(mac&&opra)mac=3D0
+ns61=3D(parseInt(navigator.productSub)>=3D20010726)?true:false
+ie4=3D(!_d.getElementById&&_d.all)?true:false;ta=3D0;
+ie55=3D((navigator.appVersion.indexOf("MSIE =
+6.0")!=3D-1||navigator.appVersion.indexOf("MSIE =
+5.5")!=3D-1))?true:false;
+if(ie55&&opra)ie55=3Dfalse;
+konq=3D(navigator.userAgent.indexOf("Konqueror")!=3D-1)?true:false
+sfri=3D(navigator.userAgent.indexOf("safari")!=3D-1)?true:false;
+
+if(sfri||konq)
+{
+	ns6=3D0
+	ns61=3D0
+	ns7=3D0
+	}
+
+IEDtD=3D0;if((_d.all&&_d.compatMode=3D=3D"CSS1Compat")||(mac&&_d.doctype&=
+&_d.doctype.name.indexOf(".dtd")!=3D-1))IEDtD=3D1;
+mp=3D(ns6)?"pointer":"hand";oatop=3D0;aleft=3D0;oaleft=3D1;osy=3D0;oww=3D=
+-1;owh=3D-1;frs=3D0;fre=3D0;nsmatch=3D0;okpgms=3D0;inDragMode=3D0;closeFe=
+l=3D1;
+var a,_am,oa,im,om,flta;hlarr=3Dnew =
+Array();hlcnt=3D0;hll=3D0;Mname=3Dnew Array();parr=3Dnew =
+Array();SwapIM=3Dnew Array();SoImG=3Dnew Array();keyar=3Dnew =
+Array();keyarC=3D0;keynum=3D0;MenuHasFocus=3D1;
+_OfM=3D0;ParentMenu=3D0;pf=3D0;gmi=3D20;ns6hif=3D0;timo=3D0;el=3D0;nshl=3D=
+0;var =
+omv=3D0;df=3D1;im=3D0;ofrac=3D0;omnu=3D0;kmnu=3D0;ac=3D22;m=3D1;sy=3D1;sx=
+=3D1;ShM=3D0;ww=3D0;wh=3D0;var imar=3Dnew Array();mr=3D",";
+while(self["menu"+m]){mr+=3D"menu"+m+",";tmenu=3Deval("menu"+m);
+Mname[m]=3Dtmenu[0].toLowerCase();m++}
+mr=3Dmr+" ";mr=3Dmr.split("\,");menus=3Dmr.length-1;var cgm=3D0;
+function =
+gmobj(mtxt){if(_d.getElementById){m=3D_d.getElementById(mtxt)}else =
+if(_d.all){m=3D_d.all[mtxt]}else if(_d.layers){m=3D_d[mtxt]}return m;}
+function gmstyle(mtxt){m=3Dgmobj(mtxt);if(!ns4){if(m)m=3Dm.style;}return =
+m;}
+function =
+spos(gm,t_,l_,h_,w_){px=3D"px";if(ns4){px=3D"";gms=3Dgm;if(w_!=3Dnull)gms=
+.clip.width=3Dw_;if(h_!=3Dnull)gms.clip.height=3Dh_;}else =
+if(opra){px=3D"";gms=3Dgm.style;if(w_!=3Dnull)gms.pixelWidth=3Dw_;if(h_!=3D=
+null)gms.pixelHeight=3Dh_}else{gms=3Dgm.style;if(w_!=3Dnull)gms.width=3Dw=
+_+px;if(h_!=3Dnull)gms.height=3Dh_+px;}if(t_!=3Dnull)gms.top=3Dt_+px;if(l=
+_!=3Dnull)gms.left=3Dl_+px}
+function =
+gpos(gm){if(ns4){t_=3Dgm.top;l_=3Dgm.left;h_=3Dgm.clip.height;w_=3Dgm.cli=
+p.width;}else =
+if(opra){t_=3Dgm.offsetTop;l_=3Dgm.offsetLeft;h_=3Dgm.offsetHeight;w_=3Dg=
+m.offsetWidth;}else =
+if(ns6){t_=3Dgm.offsetTop;l_=3Dgm.offsetLeft;h_=3Dgm.offsetHeight;w_=3Dgm=
+.offsetWidth}else{if(mac){topM=3Dgm.offsetParent.topMargin;if(!topM)topM=3D=
+0;leftM=3Dgm.offsetParent.leftMargin;if(!leftM)leftM=3D0;t_=3DparseInt(to=
+pM)+gm.offsetTop;l_=3DparseInt(leftM)+gm.offsetLeft;}else{t_=3Dgm.offsetT=
+op;l_=3Dgm.offsetLeft;}h_=3Dgm.offsetHeight;w_=3Dgm.offsetWidth;}if(konq)=
+{w_=3DparseInt(gm.style.width);h_=3DparseInt(gm.style.height);}var =
+gpa=3Dnew =
+Array();gpa[0]=3Dt_;gpa[1]=3Dl_;gpa[2]=3Dh_;gpa[3]=3Dw_;return(gpa)}
+function =
+getMouseXY(e){if(ns4||ns6){MouseX=3De.pageX;MouseY=3De.pageY;}else{MouseX=
+=3Devent.clientX;MouseY=3Devent.clientY}if(!opra&&_d.all){MouseX=3DMouseX=
++_d.body.scrollLeft;MouseY=3DMouseY+_d.body.scrollTop;if(IEDtD)MouseY=3DM=
+ouseY+sy}if(inDragMode){gm=3Dgmobj(DragLayer);spos(gm,MouseY-DragY,MouseX=
+-DragX);return false}return true}
+function =
+parseLink(txt,what){txt=3Dtxt+";";lt=3D"";if(what=3D=3D"link"){if(txt.ind=
+exOf("&quot;")>0){lt=3Dtxt}else{sp=3Dtxt.indexOf(" =
+");lt=3Dtxt.substr(0,sp);}}else{sp=3Dtxt.indexOf(what)+what.length+1;if(s=
+p>what.length){lt=3Dtxt.substr(sp,999);lt=3Dlt.substr(0,lt.indexOf(";"))}=
+}return lt}
+function cHexColor(_c){return _c.match(/^[0-9a-f]{6,6}$/i) ? '#' + =
+_c.toUpperCase() : _c;}
+function stch(ms){window.status=3Dms;return true}
+function =
+fixForm(divname,show){if(ie55||ns6||mac)return;mfrms=3Ddivname.split(";")=
+;for(oa=3D0;oa<mfrms.length;oa++){if(opra||ns4){SDiv(mfrms[oa],show)}else=
+{gmf=3D_d.forms[mfrms[oa]];if(gmf){for(foa=3D0;foa<gmf.length;foa++){if(g=
+mf.elements[foa].type.substr(0,7)=3D=3D"select-"){fobj=3Dgmf.elements[foa=
+].style;if(show){fobj.visibility=3D"visible";fobj.overflow=3D"visible"}el=
+se{fobj.visibility=3D"hidden";fobj.overflow=3D"hidden"}}}}}}}
+function SDiv(nm,sh){if(ns4&&nm.indexOf(".")>0)tD=3Deval(nm); else =
+tD=3Dgmstyle(nm);if(tD)if(sh)tD.visibility=3D"visible";else =
+{tD.visibility=3D"hidden";if(ie55){gmif=3Dgmobj("if"+nm);if(gmif)gmif.sty=
+le.visibility=3D'hidden';}}}
+function =
+close_el(){for(xa=3Dhlarr.length-1;xa>=3D0;xa--){ti=3Dhlarr[xa].split("@"=
+);if(!ns4&&SoImG[ti[1]]){stimo=3D"im_"+ti[0].substring(4,99)+"_"+ti[1]+"_=
+"+ti[0];stimo=3Dgmobj(stimo);menu=3Deval(ti[0]);if(menu[11]=3D=3D1)stimo.=
+src=3Dmenu[6][16]; else =
+stimo.src=3Dmenu[6][10];}tmenu=3Deval(ti[0]);if(ns4){shl(ti[0],ti[1],'hid=
+e')}else{arg=3Dgmobj("el"+ti[1]);arg.style.background=3Dti[2];arg.style.c=
+olor=3D""+ti[3];if(ti[4])arg.style.borderColor=3Dti[4]}if(ti[0]=3D=3Dhll)=
+{if(ns4)shl(ti[0],hel,'show');return}}hlcnt=3D0;hlarr=3Dnew Array()}
+function =
+closeallmenus(){ShM=3D0;om=3D"";hll=3D"";close_el();if(ParentMenu){if(Par=
+entMenu.closeFel)ParentMenu.close_el();}if(pf&&pf.MLoaded){pf.closeallmen=
+us();}if(ns4){omv.visibility=3D"hide"}for(a=3D1;a<menus;a++){menu=3Deval(=
+"menu"+a);if(menu[17]&&MLoaded>1)fixForm(menu[17],1);if(menu[7]!=3D1)SDiv=
+("menu"+a,0);else _am=3D""}}
+function rep_img(){if(timo&&timo.src!=3Do_img){timo.src=3Do_img}}
+function =
+popdn(){arg=3Dpopdn.arguments;if(arg[0]){if(arg[3].substr(0,5)!=3D"show-"=
+){if(ns4){shl(arg[2],arg[1],"hide")}else{arg[0].style.background=3Darg[4]=
+;arg[0].style.color=3Darg[5];if(arg[6])arg[0].style.borderColor=3Darg[6]}=
+}else{if(ns4)omv=3D0;hlarr[hlcnt]=3Darg[2]+"@"+arg[1]+"@"+arg[4]+"@"+arg[=
+5]+"@"+arg[6];hlcnt++;}menu=3Deval(arg[2]);if(!menu[12]){clearTimeout(Mti=
+mer);Mtimer=3DsetTimeout("closeallmenus();resetShM();",timegap)}}else{cle=
+arTimeout(Mtimer);Mtimer=3DsetTimeout("closeallmenus();resetShM",timegap)=
+}}
+function =
+dc(){if(nshl.indexOf("show-menu=3D")>-1)return;tr=3Dltarg.split("=3D");if=
+(tr[1])parent.frames[tr[1]].location.href=3Dnshl;else =
+location.href=3Dnshl;}
+function =
+getMenuByName(mn){mn=3Dmn.toLowerCase();for(a=3D1;a<menus;a++){if(mn=3D=3D=
+Mname[a]){return a;}}return a;}
+function =
+getMenuItem(mn,item){for(a=3D1;a<mn;a++){menu=3Deval("menu"+a);item=3Dite=
+m+((menu.length-ac)/5)}item--;return item}
+function =
+sis(){for(a=3D1;a<imar.length;a++){tim=3Dimar[a].split("_");if(tim[4]){ti=
+m[3]=3Dtim[3]+"_"+tim[4]}menu=3Deval(tim[3]);if(ns4){im=3D_d.layers[tim[3=
+]].document.layers["el"+tim[2]];imp=3Dgpos(im);eln=3D"";for(x=3D0;x<2;x++=
+){imo=3D_d.layers[tim[3]].document.layers[eln+"el"+tim[2]].document.layer=
+s[imar[a]];imop=3Dgpos(imo);imL=3Dimp[3]-(imop[3]);imT=3D(imp[2]/2)-(imop=
+[2]/2);if(menu[15])imL=3D1;if(menu[13]=3D=3D"left")imL=3D1;if(menu[13]=3D=
+=3D"center")imL=3D(imp[3]/2);eln=3D"m";spos(imo,imT,imL,null,null);}}else=
+{imo=3Dgmobj(imar[a]);imop=3Dgpos(imo);im=3Dgmobj("el"+tim[2]);imp=3Dgpos=
+(im);if(mac){x=3Dmenu[6][9];imp[0]=3Dimp[0]-x;imop[0]=3Dimo[0]-x}if(menu[=
+11]){imco=3Dgpos(gmobj("hel"+tim[2]));imc=3Dimco[1];}else{imc=3D0}imT=3Di=
+mp[0]+(imp[2]/2)-(imop[2]/2);imL=3Dimc+imp[3]-(imop[3]);if(menu[15])imL=3D=
+imc;if(menu[13]=3D=3D"left")imL=3Dimc;if(menu[13]=3D=3D"center")imL=3Dimc=
++(imp[3]/2);if(ns6&&!ns61){nsC=3Dgpos(gmobj(tim[3]));imT=3DimT-nsC[0];imL=
+=3DimL-nsC[1]}spos(imo,imT,imL,null,null);}}}
+function =
+fixb(mnu){menu=3Deval(mnu);if(!menu[11]&&!menu[3])menu[3]=3D100;ic=3D(men=
+u.length-ac)/5;menu[21][2]=3D1;m42=3Dmenu[4]*2;mn=3Dgmobj(mnu);if(ns4){if=
+(menu[14]){spos(gmobj("menuback"+mnu),null,null,mn.clip.height+(menu[14]*=
+2),null)}if(menu[11]){mn.clip.width=3Dmn.clip.width+menu[4]}return}mp=3Dg=
+pos(mn);el=3Dmenu[21][1];ml=3Dgmobj("el"+(el-1));mlp=3Dgpos(ml);tw=3Dnull=
+;th=3Dnull;if(menu[11]){lf=3D0;tc=3D0;for(y=3Del-ic;y<el;y++){tc++;ty=3Dg=
+mobj("el"+y);typ=3Dgpos(ty);thy=3Dgmobj("hel"+y);thyp=3Dgpos(thy);if(mac&=
+&!menu[3]){thy.style.width=3D1+"px";ty.style.width=3Dthy.offsetWidth+menu=
+[6][9]+"px";typ[3]=3Dthy.offsetWidth}if(opra){ty.style.top=3Dmenu[4];if(l=
+f=3D=3D0)lf=3Dmenu[4];typ[2]=3Dtyp[2]+(m42);spos(ty,null,0,null,typ[3]);}=
+spos(thy,null,lf,typ[2],typ[3]);lfL=3D0;if(menu[ac-1+(tc*5)]>0)lfL=3Dmenu=
+[ac-1+(tc*5)];lf=3Dlf+typ[3]+lfL;hsep=3Dgmobj("hsep"+y);if(y<el-1)spos(hs=
+ep,null,typ[3],typ[2]); else =
+spos(hsep,null,0,0,0);}tw=3Dlf-lfL;th=3Dtyp[2];if(_d.compatMode=3D=3D"CSS=
+1Compat"){}else{if(mac){if(!_d.doctype){th=3Dth+(m42);tw=3Dtw+m42}else{if=
+(_d.doctype.name.indexOf(".dtd")<0){th=3Dth+(m42);}}}else =
+if(_d.all&&!opra){tw=3Dtw+(m42);th=3Dth+(m42)}}if(opra)tw=3Dtw+(menu[4])}=
+else{marw=3DparseLink(menu[20],"margin");if(ns6){tw=3Dmp[3]-(menu[4]*4);}=
+if(IEDtD){tw=3Dmenu[3]-menu[4]}if(opra)tw=3Dmp[3]-(menu[4]*2);if(menu[19]=
+){spo=3Dgmobj("S"+mnu);sp=3Dgpos(spo);th=3Dsp[2];}}spos(mn,null,null,th,t=
+w);if(marw)tw=3Dtw+(marw*2)+2;spos(mn,null,null,th,tw);if(menu[14]){spos(=
+gmobj("menuback"+mnu),null,null,th+(menu[14]*2)+m42,null)}}			=09
+function =
+sm(v1){menu=3Deval(v1);if(menu[19]&&!menu[21][2])fixb(v1);if(opra||ns6||m=
+enu[11]||IEDtD)if(!menu[7]&&!menu[21][2])fixb(v1);ap=3Dgmobj(v1);if(flta)=
+if(ap.filters[0])ap.filters[0].Apply();gmi++;if(!ns4)aps=3Dap.style; =
+else =
+aps=3Dap;aps.zIndex=3Dgmi;aps.visibility=3D'visible';if(ie55){gmif=3Dgmob=
+j("if"+v1);ifgp=3Dgpos(ap);spos(gmif,ifgp[0],ifgp[1],ifgp[2],ifgp[3]);gmi=
+f.style.visibility=3D'visible';}if(flta)if(ap.filters[0])ap.filters[0].Pl=
+ay();if(menu[17])fixForm(menu[17],0)}
+function =
+popup(mn,mpos){if(isNaN(mn)){for(a=3D1;a<menus;a++){if(mn=3D=3DMname[a]){=
+mn=3Da;break;}}}setpos();omv.visibility=3D'hide';clearTimeout(Mtimer);clo=
+seallmenus();mtxt=3D'menu'+mn;mi=3Dgmstyle(mtxt);if(ns4)_d.captureEvents(=
+Event.MOUSEMOVE);_d.onmousemove=3DgetMouseXY;mn=3Dgmobj(mtxt);gp=3Dgpos(m=
+n);if(mpos>0){ttop=3DMouseY+2;tleft=3DMouseX+2}else{ttop=3Dgp[0];tleft=3D=
+gp[1];}if((ttop+gp[2])>(wh+sy)){ttop=3Dwh-gp[2]+sy;if(!mpos&&mpos>0){spos=
+(mn,ttop,null,null,null);}}if((tleft+gp[3])>(ww+sx)){tleft=3Dww-gp[3]+sx;=
+if(!mpos&&mpos>0){spos(mn,null,tleft,null,null);}}if(mpos){spos(mn,ttop,t=
+left,null,null);}flta=3D0;if((_d.all&&_d.getElementById)&&!mac){ap=3Dgmob=
+j(mtxt);getflta(ap);}sm(mtxt);_am=3Dmn}
+function =
+shl(lyr,el,s){clearTimeout(Mtimer);mt=3D_d.layers[lyr].document.layers["e=
+l"+el];omv.visibility=3D"hide";menu=3Deval(lyr);mt.visibility=3Ds;omv=3Dm=
+t}
+function =
+resetShM(){for(a=3D1;a<menus;a++){menu=3Deval("menu"+a);if(menu[7]&&menu[=
+12]){ShM=3D0;return}}if(ParentMenu)ParentMenu.resetShM()}
+function popi(v1,lyr,el)
+{
+	if((loadWait&&MLoaded=3D=3D0)||inDragMode)return;
+	subfound=3D0;nv1=3Dv1;
+	=
+for(a=3D1;a<menus;a++){if(v1.match("show-menu")&&v1.substring(10,99)=3D=3D=
+Mname[a]){v1=3D"show-menu"+a;subfound=3D1;a=3D999}	}
+	if(!om)om=3Dlyr;clearTimeout(Mtimer);
+	if(ParentMenu)ParentMenu.clearTimeout(ParentMenu.Mtimer);
+	=
+if(ns4){timo=3D_d.layers[lyr].document.layers["el"+el].document.images[0]=
+}else{timo=3Dgmobj("im"+el)}
+	=
+o_img=3D"";if(timo){o_img=3Dtimo.src;if(SwapIM[el].src)timo.src=3DSwapIM[=
+el].src}
+	kmnu=3Dlyr;container=3Deval(lyr);
+	if(SoImG[el])
+	{
+		stimo=3D"im_"+lyr.substring(4,99) + "_" + el+"_" + lyr
+		=
+if(ns4){stimo=3D_d.layers[lyr].document.layers["el"+el].document.layers[s=
+timo]}else{stimo=3Dgmobj(stimo)}
+		stimo.src=3DSoImG[el].src
+	}
+
+	if(subfound)
+	{
+		v1=3Dv1.substring(5,99);
+		menu=3Deval(v1);
+	=09
+		omnu=3Dv1;
+		mi=3Dgmobj(v1);
+	=09
+		gp=3Dgpos(gmobj(lyr));
+		h3=3D"";
+	=09
+		if(container[11])h3=3D"h";
+		if(ns4){tel=3Dgpos(_d.layers[lyr].document.layers["el"+el])}else{
+		tel=3Dgpos(gmobj(h3+"el"+el))
+	}
+=09
+		np=3Dgpos(mi);
+		if(np[2]<10){fixb(v1);np=3Dgpos(mi)}
+		if(container[11])
+		{
+			kmnu=3Dv1
+			if(!container[5])container[5]=3D"";
+			if(!opra&&_d.all&&!mac)gp[1]=3Dgp[1]+container[4];
+			if(ns6)if(ns61)gp[1]=3Dgp[1]+container[4];else =
+gp[1]=3D-1;gp[0]=3Dgp[0]-container[4]
+			if(mac)gp[0]=3Dgp[0]-container[4];
+			=
+if(container[5].indexOf("bottom")>=3D0){tvar=3Dcontainer[1];if(!tvar)tvar=
+=3D0;gp[0]=3Dgp[0]-np[2]-tel[2]}
+			if(tel[1]+gp[1]+np[3]>ww+sx){gp[1]=3Dww-np[3]-tel[1]+sx;}
+			mtop=3Dgp[0]+gp[2];
+			mleft=3Dtel[1]+gp[1];
+			if(container[15])mleft=3Dmleft-np[3]+tel[3]+(container[4]*2)
+			m1=3Dmenu[1];
+			if(m1)
+			{
+				m1=3Dm1+"";
+				if(m1.indexOf("offset=3D")=3D=3D0)
+				{
+					os=3Dm1.substr(7,99);
+					mtop=3D(parseInt(os)+mtop)
+				}
+				else
+				{
+					if(m1)mtop=3DparseInt(m1)
+				}
+			}
+
+			m2=3Dmenu[2];
+			if(m2){m2=3Dm2+"";
+			if(m2.indexOf("offset=3D")=3D=3D0)
+			{
+				os=3Dmenu[2].substr(7,99);
+				mleft=3D(parseInt(os)+mleft);
+			}else{if(m2)mleft=3Dm2;}
+		}
+		if(menu[5])setpos();else spos(mi,mtop,mleft-1,null,null);
+		}
+		else
+		{
+			if(!ns61&&ns6)tel[0]=3Dtel[0]-gp[0];
+			nt=3Dtel[0]+gp[0]+suboffset_top;
+			nl=3Dgp[1]+tel[3]-suboffset_left;
+			onl=3Dnl
+			ont=3Dnt
+			=
+if((gp[1]+gp[3]+np[3])>=3Dww+sx||menu[15]){nl=3Dgp[1]-np[3]+suboffset_lef=
+t}
+			if(nl<0)nl=3Donl;
+			if(nt+np[2]>wh+sy){nt=3Dwh-np[2]+sy;}
+			if(nt<0)nt=3Dsy+4
+			if(menu[1]>=3D0)nt=3Dmenu[1]
+			if(menu[2]>=3D0)nl=3Dmenu[2]
+			if(menu[5])setpos();else spos(mi,nt,nl,null,null);
+		}
+		om+=3D","+v1;
+	=09
+		if(ShM=3D=3D1){sm(v1);if(!ns4)mi.style.visibility=3D"visible"}
+
+// Scroll Code **********
+		if(menu[19])
+		{
+			gp=3Dgpos(gmobj(v1));
+			gpc=3Dgpos(gmobj("S"+v1))
+			tt=3D0;
+			if((gp[0]+gpc[2])>wh+sy)
+			{
+				spos(gmobj("S"+v1),null,null,(wh+sy)-gp[0]-10-2);
+				spos(gmobj(v1),null,null,(wh+sy)-gp[0]-10);
+			}
+			else
+			{
+			}
+		}
+// Scroll Code **********
+	}
+	else
+	{
+		frt=3Dv1.indexOf(" ")
+		lt=3DparseLink(v1, "sourceframe");
+		if(lt)pf=3Dparent[lt];
+		if(frt>0&&v1.indexOf("show-menu=3D")>-1)
+		{
+			if(lt)
+			{
+				v1=3Dv1.substring(10,frt);
+				if(pf.MLoaded)
+				{
+
+					pf.mn=3Dpf.gmobj("menu"+pf.getMenuByName(v1));
+					menu=3Deval(lyr);
+					gp=3Dgpos(gmobj(lyr));
+					h3=3D"";
+					if(container[11])h3=3D"h";
+					=
+if(ns4){mp=3Dgpos(_d.layers[lyr].document.layers["el"+el])}else{mp=3Dgpos=
+(gmobj(h3+"el"+el))}
+					fLeft=3D0;
+					if(menu[11])
+					{
+						fTop=3Dpf.sy;
+						fLeft=3Dpf.sx+gp[1]+mp[1]+Frames_Left_Offset;
+					}
+					else
+					{
+						fTop=3Dpf.sy+gp[0]+mp[0]+Frames_Top_Offset;
+						fLeft=3Dpf.sx+100
+					}
+					tp=3Dgpos(pf.mn)
+					if(fTop+tp[2]>(pf.sy+pf.wh))fTop=3Dpf.wh-tp[2]+pf.sy
+					pf.spos(pf.mn,fTop,fLeft-100,null,null);
+					closeFel=3D0
+					if(_OfM!=3Dv1)closeFel=3D1				=09
+					if(ShM=3D=3D1)
+					{
+						=
+if(pf.mn.visibility=3D=3D"hide"||pf.mn.style.visibility=3D=3D"hidden")pf.=
+popup(v1);=20
+					}
+					else
+					{
+						if(closeFel)close_el();
+					}
+				=09
+					_OfM=3Dv1
+					closeFel=3D1
+					pf.ParentMenu=3Dself
+				}
+			}
+		}
+		else if(frt>0)
+		{
+			if(lt)if(pf)if(pf.MLoaded)pf.closeallmenus()
+			if(ns4)shl(lyr,el,"show");
+		}
+	=09
+	}
+	ta=3Dom.split(",")
+	strt=3D0;
+	for(a=3D0;a<ta.length;a++)
+	{
+		if (ta[a]=3D=3Dv1)strt=3D0;
+		if (strt)
+		{
+			if(ta[a])
+			{
+				hll=3Dlyr;
+				hel=3Del;
+				close_el();
+				tmnu=3Deval(ta[a])
+				if(tmnu[17]&&!menu[17])fixForm(tmnu[17],1)
+				if(!tmnu[7])SDiv(ta[a],0)
+			}
+		ta[a]=3D""
+		}
+		if(ta[a]=3D=3Dlyr)strt=3D1;
+	}
+	mmenu=3Deval(lyr)
+	if(mmenu[7]&&lyr!=3Dta[0])
+	{
+		closeallmenus();
+		if(v1=3D=3Dta[ta.length-1])
+		{
+			if(ns4)shl(lyr,el,'show');
+			tmnu=3Deval(v1)
+			if(tmnu[17])fixForm(tmnu[17],0)
+
+			SDiv(v1,1)
+		}
+	}
+	om=3D""
+	mdisp=3D0
+	for(a=3D0;a<ta.length;a++)
+	{
+		if(ta[a]=3D=3Dlyr)frs=3Da
+		if(ta[a]=3D=3Dv1)fre=3Da
+		if (mdisp||(a>frs&&a<fre))
+		{
+			if (ta[a]&&ta[a]!=3Dv1)
+			{
+				SDiv(ta[a],0)
+				close_el();
+				if(ns4)shl(lyr,el,'hide');
+			}
+		}
+		else
+		{
+			if(ta[a])om+=3Dta[a]+",";
+		}
+		if (v1=3D=3Dta[a])mdisp=3D1
+	}
+}
+
+
+// Scroll Code **********
+function scroll(val,mnu)
+{
+	mn=3DgetMenuByName(mnu);
+	mi=3Dgmobj("Smenu"+mn);
+	mip=3Dgpos(mi)
+	tt=3Dtt-val
+	gp=3Dgpos(gmobj("menu"+mn))
+
+	if(tt>=3D0 && tt<(gp[2]-gp[0]))
+	{
+		mi.style.clip =3D "rect("+tt+"px "+mip[3]+"px "+(tt+gp[2]-7)+"px 0px)"
+		ns6c=3D0
+		if((ns6&&!ns61)||mac)ns6c=3D1
+		spos(mi,-tt,null,tt+gp[2])
+		ST =3D setTimeout("scroll("+val+",'"+mnu+"')",30);
+	}
+	else
+	{
+		tt=3Dtt+val
+		clearTimeout(ST)
+	}
+	clearTimeout(Mtimer);
+}
+// Scroll Code **********
+
+
+function hl()
+{
+	=
+arg=3Dhl.arguments;imgact=3D"";hlnk=3Darg[1];if(!menu[8]&&menu[15])menu[8=
+]=3D"right";_am=3D" =
+"+a;_am=3D_am.length-1;subimg=3D"";arg[0]+=3D"";if(ns6){dwd=3Darg[2][9]*2=
+}else{dwd=3D0};if(ns4){if(el=3D=3D0){st=3D"<style =
+type=3D\"text/css\">A.m{text-decoration:none;}</style>";_d.write(st);oato=
+p=3Datop;}else{mtl=3D_d.layers[omnu].document.layers["el"+(el-1)];
+	=
+if(oatop=3D=3Datop){atop+=3Dmtl.clip.height}else{atop=3Dmenu[4];}oatop=3D=
+atop}if(menu[11]){atop=3Dmenu[4];if(oaleft=3D=3Daleft){aleft+=3Dmtl.clip.=
+width+arg[8]}else{aleft=3Dmenu[4];oaleft=3Daleft}oaleft=3Daleft}else{alef=
+t=3Dmenu[4];}}
+	=
+if(hlnk.substring(0,5)=3D=3D"show-"){arg[1]=3Darg[1].toLowerCase();if(arg=
+[7]=3D=3Dhlnk) if(arg[6])arg[7]=3Darg[6];else arg[7]=3D"";hlnk=3D"#";if =
+(arg[6]+" "!=3D"undefined ")hlnk=3Darg[6];}
+	=
+pI=3D"popi('"+arg[1]+"','"+arg[5]+"',"+el+");";if(arg[1].substring(0,5)=3D=
+=3D"show-"&&(!menu[11]||menu[6][16])&&(menu[11]||menu[6][10])){im++;ims=3D=
+"im_"+a+"_"+el+"_"+arg[5];ti=3Darg[2][10];if(menu[6][16]&&menu[11])ti=3Dm=
+enu[6][16];if(ns4){sti=3D"<img border=3D0 src=3D"+ti+">";
+	subimg=3D"<layer id=3D"+ims+">"+sti+"</layer>";}else{
+	=
+if(!parseLink(arg[1],"sourceframe"))imgact=3D"onmouseover=3D\"gmobj('el"+=
+el+"').onmouseover();\" =
+onmouseout=3D\"gmobj('el"+el+"').onmouseout();\"";
+	if(opra)imgact=3D"onmouseover=3D\"clearTimeout(Mtimer)\"";
+	subimg=3D"<img id=3D"+ims+" style=3D\"position:absolute;\" "+imgact+" =
+border=3D0 =
+src=3D"+ti+">"};imar[im]=3Dims;}omp=3Dmp;ofc=3Darg[2][0];ofb=3Darg[2][1];=
+onc=3Darg[2][2];onb=3Darg[2][3];ltarg=3D" =
+";lOnfunc=3D"";lOffunc=3D"";ltype=3D"";lalign=3Dmenu[8];if(!lalign)lalign=
+=3D"left"
+	=
+tfborc=3D"";nborc=3D"";fborc=3D"";dragable=3D0;simg=3D"";bimg=3D"";sbimg=3D=
+"";sbgc=3D"";sbgc=3DparseLink(hlnk,"separatorcolor");if(!sbgc)if(menu[6][=
+19])sbgc=3Dmenu[6][19]; else sbgc=3Dmenu[6][4]
+	marw=3DparseLink(menu[20],"margin");
+	if(!marw)marw=3D0;
+	if(hlnk.indexOf(" =
+")>0){k2o=3DparseLink(hlnk,"keytoopen");if(k2o){keyar[keyarC]=3Dk2o.toUpp=
+erCase()+";"+arg[1]+";"+arg[5]+";"+el;keyarC++;}
+		_al=3DparseLink(hlnk,"align");if(_al)lalign=3D_al;
+		ltarg=3DparseLink(hlnk,"target");
+		if(ltarg)ltarg=3D" target=3D"+ltarg
+		lOnfunc=3DparseLink(hlnk,"onfunction")+";";
+	=09
+		lOffunc=3DparseLink(hlnk,"offfunction")+";";
+		ltype=3DparseLink(hlnk,"type");
+		tofc=3DparseLink(hlnk,"offfontcolor");if(tofc)ofc=3DcHexColor(tofc)
+		tofb=3DparseLink(hlnk,"offbackcolor");if(tofb)ofb=3DcHexColor(tofb)
+		tonc=3DparseLink(hlnk,"onfontcolor");if(tonc)onc=3DcHexColor(tonc)
+		tonb=3DparseLink(hlnk,"onbackcolor");if(tonb)onb=3DcHexColor(tonb)
+		=
+nborc=3DparseLink(hlnk,"onbordercolor");if(nborc){nborc=3DcHexColor(nborc=
+);nborc=3D"this.style.borderColor=3D'"+nborc+"';"}
+		=
+fborc=3DparseLink(hlnk,"offbordercolor");if(fborc){fborc=3DcHexColor(fbor=
+c);tfborc=3D"border:"+fborc+" 1px solid;"}
+		simg=3DparseLink(hlnk,"swapimage");
+		soimg=3DparseLink(hlnk,"suboverimage");
+		if(soimg){SoImG[el]=3Dnew Image();SoImG[el].src=3Dsoimg}
+		bimg=3DparseLink(hlnk,"backimage");
+		sbimg=3DparseLink(hlnk,"overbackimage");
+		dragable=3DparseLink(hlnk,"dragable");
+		hlnk=3DparseLink(hlnk,"link");
+		if(hlnk.indexOf(" ")>0)hlnk=3Dhlnk.substr(0,hlnk.indexOf(" "));
+	}
+	if(ns4&&ofb=3D=3D"transparent")ofb=3D""
+	if(!ofb&&(mac||opra))ofb=3D"transparent"
+	if(arg[7]+""=3D=3D"undefined"){arg[7]=3Dhlnk}	=09
+	if(ltype=3D=3D"form"){onc=3Dofc;onb=3Dofb;mp=3D"default"}
+	=
+if(ltype=3D=3D"header"&&arg[2][17]){ofc=3Darg[2][17];ofb=3Darg[2][18];onc=
+=3Darg[2][17];onb=3Darg[2][18];mp=3D"default"};smO=3D"ShM=3D1;";smC=3D"";=
+
+	=
+if(menu[16]=3D=3D1){smO=3D"";if(!arg[1].indexOf("show-menu"))hlnk=3D"java=
+script:ShM=3D1;"+pI}=09
+	=
+if(hlp[14]){tlen=3Dhlnk.length;thlnk=3Dlocation.href;thlnk=3Dthlnk.substr=
+ing(thlnk.length-tlen,thlnk.length);if(hlnk!=3D"#"&&hlnk=3D=3Dthlnk){ofc=3D=
+arg[2][14];ofb=3Darg[2][15]}}=09
+	=
+if(ltype=3D=3D"form"||hlnk=3D=3D"#"||ltype=3D=3D"header"){mp=3D"default";=
+
+	if(ns4){hlnk=3D"<a ";}else{hlnk=3D" "}}else{if(ns4){hlnk=3D"<a =
+href=3D\""+hlnk+"\" "+ltarg}else{hlnk=3D"<a id=3Dlnk"+el+" =
+href=3D\""+hlnk+"\" "+ltarg+" style=3D'text-decoration:none;'>"}}
+	if(!ns4){if(bimg)ofb=3D"url("+bimg+") =
+"+ofb;if(sbimg){if(sbimg!=3D"NONE"){onb=3D"url("+sbimg+") =
+"+onb;}}else{if(bimg)onb=3D"url("+bimg+") "+onb;}}
+	pd=3D"popdn(this," + el + ", '" + arg[5] + "', '"+arg[1]+"', '"+ofb+"', =
+'"+ofc+"', '"+fborc+"');"
+	=
+if(arg[0].toLowerCase().indexOf("<img")>=3D0){if(menu[11]&&ns6)ns6hif=3D1=
+;ipos=3Darg[0].toLowerCase().indexOf("<img");if(simg){SwapIM[el]=3Dnew =
+Image();SwapIM[el].src=3Dsimg;}else{SwapIM[el]=3D0}iefix=3D"";
+	if(navigator.appVersion.indexOf("MSIE 6")){iefix=3D" =
+onclick=3D\"gmobj('el"+el+"').click()\"";}
+	arg[0]=3Darg[0].substr(0,ipos+4)+iefix+" id=3Dim"+el+" "+ =
+arg[0].substr(ipos+5,900)}if(!isNaN(arg[2][5]))arg[2][5]+=3D"px"
+	dragfunc=3D"";
+	if(dragable){dragfunc=3D"drag_drop('"+arg[5]+"');";}
+	if(ns4){
+		if(bimg)bimg=3D" =
+background=3D"+bimg;if(sbimg){if(sbimg!=3D"NONE")sbimg=3D" =
+background=3D"+sbimg;else sbimg=3D""}else{sbimg=3Dbimg}
+		tdwd=3D" width=3D"+(menu[3]-(arg[2][9]*2))
+		ns4nwrap=3D"";if(menu[11])ns4nwrap=3D"nowrap";
+		ls=3D"<table border=3D0 cellpadding=3D"+arg[2][9]+" =
+cellspacing=3D0><tr><td "+ns4nwrap+" height=3D-1 =
+align=3D"+lalign+tdwd+">"+hlnk+" style=3D'color:"
+		=
+le=3D";text-decoration:none;font-size:"+arg[2][5]+";font-weight:"+arg[2][=
+7]+";font-family:"+arg[2][8]+"' =
+onmouseover=3D\"status=3D'"+arg[7]+"';\">"+arg[0]+"</a>"+subimg+"</td></t=
+r></table></layer>"
+		if(menu[11])nswid=3Dmenu[3]; else nswid=3D(menu[3]-(menu[4]*2))
+		lv=3D" left=3D"+aleft+" width=3D"+nswid+" top=3D"+atop
+		nsofb=3D"";if(ofb)nsofb=3D" BGColor=3D"+ofb
+		nsonb=3D"";if(onb)nsonb=3D" BGColor=3D"+onb
+		tshl=3D"shl('"+arg[5]+"',"+el+",'show');"
+		if(ltype=3D=3D"form")tshl=3D""
+		mt=3D"<layer id=3Dmel"+el+lv+" "+nsofb+bimg+" =
+onmouseover=3D\""+smO+tshl+pI+" "+dragfunc+lOnfunc+";return =
+stch('"+arg[7]+"');\">"+ls+ofc+le
+		mt+=3D"<layer id=3Del"+el+lv+" "+nsonb+sbimg+" =
+onmouseover=3D\"clearTimeout(Mtimer);"+pI+"ltarg=3D'"+ltarg+"'; =
+nshl=3D'"+arg[1]+"'; this.captureEvents(Event.CLICK); =
+this.onClick=3Ddc;\" onmouseout=3D\""+pd+"; "+lOffunc+"; return =
+stch('');\" visibility=3Dhidden >"+ls+onc+le
+	}else{
+		mt=3D"";
+		if(menu[11]){bgc=3Dhlp[4];if(hlp[11])bgc=3Dhlp[12];
+		mt+=3D"<div id=3Dhel"+el+" =
+style=3D\"text-align:left;background:'"+ofb+"';width:"+(menu[3]-menu[4])+=
+"px;position:absolute;top:0;left:"+dlft+";\">";dlft=3Ddlft+menu[3]-(menu[=
+4]*2)+menu[4]}
+		rsp=3D0;if (lalign=3D=3D"right") rsp=3D7;
+		mt+=3Dhlnk
+		dw=3D(menu[3]-(2*menu[4]+dwd))
+		if(dw+" "=3D=3D"NaN "){dw=3D""}else{dw=3D"width:"+dw+"px"}
+		=
+if(opra&&menu[3])dw=3D"width:"+(menu[3]-(arg[2][9]*2)-(menu[4]*2))+"px;"
+		if(!menu[3]&&ie4)dw=3D"width:1px";
+		if(menu[11]&&opra){dw=3D"position:absolute;"}
+		=
+if(!menu[11]&&IEDtD){dw=3D"width:"+(menu[3]-menu[4]-(arg[2][9]*2))+"px;"}=
+
+		if(isNaN(arg[2][9])){padd=3Darg[2][9]}else{psp=3Darg[2][9]+"px =
+";padd=3Dpsp+psp+psp+psp}
+		if(menu[11]&&menu[3]>0)dw=3D"position:absolute;width:"+menu[3]+"px"
+		hms=3D"";if(menu[11])hms=3D"<div =
+style=3D\";top:0;position:absolute;\"><div =
+onmouseover=3D\"clearTimeout(Mtimer)\" id=3Dhsep"+el+" =
+style=3D\"position:absolute;background:"+sbgc+";width:"+menu[b]+"px; =
+clip:rect(0 "+menu[b]+"px 100% 0);\">\n</div>\n</div>";
+		mt+=3D"<div id=3Del"+el+" =
+style=3D\"margin:"+marw+"px;"+tfborc+"text-align:"+lalign+";"+dw+";paddin=
+g:"+padd+";font-weight:"+arg[2][7]+";font-style:"+arg[2][6]+";font-family=
+:"+arg[2][8]+";font-size:"+arg[2][5]+";color:"+ofc+";background:"+ofb+";\=
+""
+		mt+=3D" =
+onMouseOver=3D\""+nborc+";this.style.background=3D'"+onb+"';style.color=3D=
+'"+onc+"';this.style.cursor=3D'"+mp+"';"+smO+"; =
+"+pI+";"+dragfunc+lOnfunc+";return stch('"+arg[7]+"');\""
+		if(mac&&_d.all)mt+=3D" onClick=3D\"lnk"+el+".click()\"";
+		mt+=3D" onMouseOut=3D\"rep_img(); "+pd+";"+lOffunc+"; return =
+stch('');\">"
+		mt+=3D(arg[0])+"</div>";
+		mt+=3D"</a>";
+		if (menu[11])mt+=3Dhms+"</div>";
+		mt+=3Dsubimg
+	}
+	mp=3Domp
+	_d.write(mt);el++;
+}
+
+
+function dmenu(mnu){
+
+	menu=3Deval(mnu);
+	menu[21]=3Dnew =
+Array();if(menu[7]){parr[parr.length]=3Dmnu.substr(4,3);}
+	if(ac=3D=3Dmenu.length){menu[23]=3D""}
+	=
+atop=3Dmenu[4];if(!atop)atop=3D0;hlp=3Dmenu[6];if(!menu[4])menu[4]=3D0;if=
+(ns4)eq=3D"=3D"; else eq=3D":";
+	=
+for(z=3D0;z<21;z++){if(z=3D=3D5)z=3D12;if(z=3D=3D16)z++;if(hlp[z]&&hlp[z]=
+.charAt(0)!=3D"#")hlp[z]=3DcHexColor(hlp[z]);}
+	=
+if(menu[14]){m14=3D";"+menu[14];m14ar=3Dm14.split(";");if(m14ar[2]){m14h=3D=
+m14ar[1];m14w=3Dm14ar[2].substr(6,99)+"px";menu[14]=3Dm14h}else{m14h=3Dm1=
+4ar[1];m14w=3D"100%"}
+	if(_d.layers)_d.write("<layer z-index=3D1 id=3Dmenuback"+mnu+" =
+top=3D"+(menu[1]-m14h)+" height=3D2 width=3D"+m14w+" left=3D0 =
+bgcolor=3D"+hlp[1]+"></layer>");else	_d.write("<div id=3Dmenuback"+mnu+" =
+style=3D\"position:absolute;top:"+(menu[1]-m14h)+"px;width:"+m14w+";heigh=
+t:2px;background:"+hlp[1]+"\">&nbsp;</div>")}
+	if(el)ns6c=3D3;else =
+ns6c=3D2;ns6w=3D0;if(menu[8]=3D=3D"right"&&ns6)ns6w=3D7;
+	if (menu[3]<1)menu[3]=3D"undefined"
+	if(ns4)
+	{
+		bgc=3D"";thw=3Dmenu[3];
+		=
+if(menu[11]){ic=3D(menu.length-ac)/5;thw=3D(menu[3]*ic)-(menu[4]*ic)+menu=
+[4]}
+		if(hlp[4])bgc=3D"bgColor=3D"+hlp[4]
+		if (hlp[11])bgc=3D"bgColor=3D"+hlp[13]
+		m18=3D"";if(menu[18])m18=3D"background=3D"+menu[18];
+		mt=3D"<layer "+m18+" z-index=3D29 visibility=3Dhidden "+bgc+" =
+id=3D"+mnu+" top=3D"+menu[1]+" left=3D"+menu[2]+" width=3D"+thw+">"
+		if (hlp[11])mt+=3D"<layer bgcolor=3D"+hlp[12]+" top=3D0 left=3D0 =
+height=3D2 width=3D100%></layer>"
+		mt+=3D"<layer id=3D"+mnu+"3d bgcolor=3D"+hlp[12]+" top=3D0 left=3D0 =
+height=3D0 width=3D2></layer>"
+	}
+	else
+	{
+		m18=3D"";if(menu[18]){m18=3D"url("+menu[18]+ ") =
+";}iedf=3D"";if(!opra&&!mac&&_d.all&&menu[9]){iedf=3D" =
+filter:";flt=3Dmenu[9].split("\;");for(fx=3D0;fx<flt.length;fx++){iedf+=3D=
+"progid:DXImageTransform.Microsoft."+flt[fx];if(navigator.appVersion.inde=
+xOf("MSIE 5.5")>0)fx=3D999}}
+		if(!hlp[4]&&(mac||opra))hlp[4]=3D"transparent"
+		if(hlp[11])brd =3D "border:solid "+menu[4]+"px; =
+border-left-color:"+hlp[12]+";border-top-color:"+hlp[12]+";border-bottom-=
+color:"+hlp[13]+";border-right-color:"+hlp[13]+";";else brd =3D " =
+border:solid "+menu[4]+"px "+hlp[4]+";";
+		=
+mt=3D"";scrof=3D"";if(!ns6)scrof=3D"overflow:hidden;";dmleft=3D0;if(menu[=
+2])dmleft=3Dmenu[2];	=09
+		=
+if(ie55){ifBlnk=3D"";if(location.protocol=3D=3D"https:")ifBlnk=3D"/blank.=
+htm";mt=3D"<IFRAME frameborder=3D0 id=3Dif"+mnu+" src=3D\""+ifBlnk+"\" =
+scroll=3Dnone =
+style=3D\"FILTER:progid:DXImageTransform.Microsoft.Alpha(style=3D0,opacit=
+y=3D0);visibility:hidden;height:20;position:absolute;width:"+(menu[3]+ns6=
+w)+"px;left:"+dmleft+"px;top:"+menu[1]+"px;z-index:5\"></iframe>"}
+		mt+=3D"<div tabindex=3D1 id=3D"+mnu+" =
+style=3D\""+iedf+scrof+";z-index:19;visibility:hidden;"+brd+"position:abs=
+olute;background:"+m18+hlp[1]+";width:"+(menu[3]+ns6w)+"px;left:"+dmleft+=
+"px;top:"+menu[1]+"px;\">"
+		if(menu[19]){mt+=3D"<div id=3DS"+mnu+" =
+style=3D\"position:absolute;overflow:hidden;\">"}
+	}
+
+	_d.write(mt)
+	x=3D0;
+	dlft=3D0
+	aleft=3D0;
+	if(menu[3]&&menu[11]&&(ns6||opra))menu[3]=3Dmenu[3]-(hlp[9]*2)
+	for(b=3Dac;b<menu.length;b++)
+	{
+		b=3Db+4
+		if(menu[b-3]=3D=3D""){menu[b-3]=3D"#"}
+		menu[b-3]=3Dmenu[b-3].replace(/\"/gi, "&quot;")
+		if(menu[b-2])menu[b-2]=3Dmenu[b-2].replace(/\"/gi, "&quot;")
+		hl(menu[b-4], menu[b-3],hlp,100,100,mnu,menu[b-2],menu[b-1],menu[b-5])
+		txt=3D"";
+		if(ns4)
+		{
+			mt=3D_d.layers[mnu].document.layers["el"+(el-1)]
+			if (!menu[11])
+			{
+				if (menu[b]&&b<menu.length-1)
+				{
+
+					x=3Datop+mt.clip.height
+					if(sbgc)bgc=3D"bgcolor=3D"+sbgc;
+					if(!hlp[11])x++
+					txt=3D"<layer top=3D"+(x-2)+" left=3D"+menu[4]+" =
+height=3D"+menu[b]+" "+bgc+" width=3D"+mt.clip.width+" =
+onmouseover=3D\"clearTimeout(Mtimer)\" ></layer>"
+					if(hlp[11]){txt+=3D"<layer top=3D"+(x-1)+" left=3D"+menu[4]+" =
+height=3D1 bgcolor=3D"+hlp[12]+" width=3D"+mt.clip.width+"></layer>"
+					}
+				}
+			}
+			else
+			{
+				if(sbgc)txt=3D"<layer bgcolor=3D"+sbgc+" =
+left=3D"+(aleft+mt.clip.width)+" width=3D"+menu[b]+" top=3D"+x+" =
+height=3D"+(mt.clip.height+(menu[4]))+"></layer>"
+			}
+		}
+		else
+		{
+			mbw=3Dmenu[b];
+			if(hlp[19])bc=3Dhlp[19]; else	bc=3Dhlp[4]
+			if(b+1=3D=3Dmenu.length)mbw=3D0;
+			if(mbw>0)
+			{
+				if(!sbgc)sbgc=3Dbc;
+				if (!menu[11])
+				{
+					dwid=3D(menu[3]-menu[4]*2)
+					if(IEDtD)dwid=3Dmenu[3]-menu[4]
+					if (hlp[11]&&mbw=3D=3D1)
+					{
+						=
+oc=3D"";if(opra)oc=3D"_d.getElementById('el"+el+"').style.background=3D'"=
++hlp[1]+"';_d.getElementById('el"+el+"').style.color=3D'"+hlp[0]+"'";
+						txt=3D"<div onmouseout=3D\""+oc+"\" =
+onmouseover=3D\"clearTimeout(Mtimer)\" style=3D\"position:relative\">"
+						txt+=3D"<div style=3D\"border-top:1px solid "+hlp[13]+"; =
+background:"+hlp[12]+"; width:"+dwid+"px;position:absolute;clip:rect(0 =
+100% 2px 0);height:1px;\">"
+						txt+=3D"</div>\n</div>"
+					}
+					else
+					{
+						txt=3D"<div style=3D'text-align:left;'>";
+						txt+=3D"<div onmouseout=3D\"popdn();\" =
+onmouseover=3D\"clearTimeout(Mtimer)\" =
+style=3D\"left:0;background:"+sbgc+";width:"+dwid+"px;position:absolute;"=
+
+						txt+=3D"clip:rect(0 100% "+mbw+"px 0);height:"+mbw+"px;\">"
+						txt+=3D"</div>"
+						txt+=3D"</div>"
+					}
+				}
+			}
+		}
+		_d.write(txt);
+		omnu=3Dmnu;
+		mt=3D""
+	}
+	oatop=3D-1;
+	if (ns4){mt=3D"</layer>"}else{
+	mt+=3D"</div>\n";
+	if(menu[19])mt+=3D"</div>"}
+	_d.write(mt)
+	if(ns4){ml=3Dgmobj(mnu);ml.clip.height +=3D =
+menu[4];ml3d=3D_d.layers[mnu].document.layers[mnu+"3d"];
+	if(hlp[11])ml3d.clip.height=3Dml.clip.height};
+	menu[21][1]=3Del
+}
+function =
+checs(e){stopchec=3D1;for(a=3D1;a<menus;a++){menu=3Deval("menu"+a);if(men=
+u[10]>0){stopchec=3D0;if(df!=3D0||osy!=3Dsy){mi=3Dgmobj("menu"+a);tm=3Dgp=
+os(mi);mit=3Dtm[0];if(isNaN(menu[1]))menu[1]=3D0;df=3DparseInt(menu[1])-m=
+it;if(sy+menu[10]>=3Dmenu[1])df=3Dsy-mit+menu[10];nt=3Ddf/followspeed;of1=
+=3Dnt.toString();ofr=3Dof1.split("\.");if(ofr[1]+" "=3D=3D"undefined =
+")ofr[1]=3D0;ofrac=3Dofrac+parseInt(ofr[1]);if(mac&&parseInt(nt)=3D=3D0)r=
+eturn;if(ofrac>10){ofrac=3Dofrac-10;if(df>=3D0)nt++; else	nt--;}
+spos(mi,mit+nt);
+if(menu[14])nt=3Dnt-menu[14]
+if(ie55){spos(gmobj("ifmenu"+a),mit+nt)}
+if(menu[14])spos(gmobj("menubackmenu"+a),mit+nt-menu[14])
+}else{return;}osy=3Dsy}}if(stopchec){osy=3Dsy;return}pu=3DsetTimeout('che=
+cs()',followrate)}
+function PlaceMenu(mn){if(ns4||ns6)pos=3D"relative";else =
+pos=3D"absolute";mnt=3D"<div id=3D\""+mn+"DIV\" =
+style=3D\"width:1;height:1;position:"+pos+"\"></div>";menu=3Deval("menu"+=
+getMenuByName(mn));menu[21][0]=3Dmn+"DIV";_d.write(mnt)}
+function =
+setpos(){for(a=3D1;a<menus;a++){menu=3Deval("menu"+a);if(menu[21][0]){gm=3D=
+gmobj(menu[21][0]);if(ns4){ntp=3Dgm.pageY;nlp=3Dgm.pageX}else{gp=3Dgpos(g=
+m);ntp=3Dgp[0];nlp=3Dgp[1]}mn=3Dgmobj("menu"+a);mnp=3Dgpos(mn);if(ntp=3D=3D=
+0)ntp=3Dnull;if(nlp=3D=3D0)nlp=3Dnull;spos(mn,ntp,nlp,null,null);if(ie55)=
+{gmif=3Dgmobj("ifmenu"+a);spos(gmif,ntp,nlp,null,null)}}else{if(!menu[5])=
+menu[5]=3D"";if =
+(menu[5].indexOf("left")!=3D-1||menu[5].indexOf("center")!=3D-1||menu[5].=
+indexOf("right")!=3D-1){mn=3Dgmobj("menu"+a);mnp=3Dgpos(mn);mnw=3Dmnp[3];=
+nlp=3D((ww-mnw)/2);if(menu[5].indexOf("right")!=3D-1)nlp=3Dww-mnw;if(menu=
+[5].indexOf("left")!=3D-1)nlp=3D1;ts=3Dmenu[2]+"";if(ts.indexOf("offset=3D=
+")=3D=3D0){os=3DparseLink(ts,"offset");nlp=3Dnlp+parseInt(os);min=3Dparse=
+Link(ts,"minimum");if(min&&(nlp<min))nlp=3Dmin;}spos(mn,null,nlp,null,nul=
+l)}if(menu[5].indexOf("top")!=3D-1||menu[5].indexOf("bottom")!=3D-1||menu=
+[5].indexOf("middle")!=3D-1){mn=3Dgmobj("menu"+a);mnp=3Dgpos(mn);mnh=3Dmn=
+p[2];if(opra)mnh=3Dmn.style.pixelHeight;nlp=3Dwh-mnh;if(menu[5].indexOf("=
+middle")!=3D-1)nlp=3D((wh-mnh)/2);if(menu[5].indexOf("top")!=3D-1)nlp=3D1=
+;ts=3Dmenu[1]+"";if(ts.indexOf("offset=3D")=3D=3D0){os=3DparseLink(ts,"of=
+fset");mnp=3Dgpos(mn);nlp=3Dnlp+parseInt(os);min=3DparseLink(ts,"minimum"=
+);if(min&&(nlp<min))nlp=3Dmin;}if(menu[10]>0){menu[1]=3Dnlp;if(nlp>0)menu=
+[10]=3Dnlp;nlp=3Dnlp+sy;if(menu[10]=3D=3Dnlp&&MLoaded<2)spos(mn,nlp,null,=
+null,null)}else{spos(mn,nlp,null,null,null)}}}}}
+function =
+MScan(){sy=3Dself.pageYOffset;sx=3Dself.pageXOffset;if(opra){ww=3Dwindow.=
+innerWidth;wh=3Dwindow.innerHeight}else =
+if(_d.all){sy=3D_d.body.scrollTop;sx=3D_d.body.scrollLeft;if(!ie4&&!mac){=
+if(sy=3D=3D0)sy=3D_d.documentElement.scrollTop;if(sx=3D=3D0)sx=3D_d.docum=
+entElement.scrollLeft;}if(_d.compatMode=3D=3D"CSS1Compat"){ww=3Ddocument.=
+documentElement.clientWidth;wh=3Ddocument.documentElement.clientHeight}el=
+se{ww=3D_d.body.clientWidth;wh=3D_d.body.clientHeight}}else{if(ns4){ww=3D=
+self.innerWidth-16;wh=3Dself.innerHeight-17}else{ww=3D_d.body.offsetWidth=
+;if(!ww)ww=3Dself.innerWidth-15;ww--;wh=3Dself.innerHeight;}}if(opra&&(ow=
+h!=3Dwh||oww!=3Dww)){if(MLoaded>1){location.reload()}MLoaded++;oww=3Dww;o=
+wh=3Dwh;}if(sy!=3Dosy)checs();if(!mac&&!opra&&MLoaded<2)sis();setpos();}
+function =
+mOL(){if(!ns61&&ns6||ns6hif){Minit()}MLoaded=3D1;if(Oload)Oload();if(load=
+Wait||opra){for(x=3D0;x<parr.length;x++){fixb("menu"+parr[x]);popup(parr[=
+x])}}sis();MScan();if(!opra)MLoaded++;}
+function =
+Minit(){el=3D0;df=3D-1;if((_d.all&&_d.getElementById)&&!mac)_d.write("<"+=
+"script>function =
+getflta(ap){try{if(ap.filters){flta=3D1}}catch(e){}}<"+"/script>");for(x=3D=
+0;x<parr.length;x++){if(!opra){fixb("menu"+parr[x]);popup(parr[x])}}if(ns=
+4){_d.captureEvents(Event.MOUSEMOVE);oww=3Dself.innerWidth-16;owh=3Dself.=
+innerHeight-17;window.onresize=3Dfunction(){if(ww!=3Doww||wh!=3Dowh)windo=
+w.history.go(0)}}_d.onmousemove=3DgetMouseXY;MScan();}for(a=3D1;a<menus;a=
+++){dmenu("menu"+a)}if(mac45)Oload=3Dwindow.onLoad;else =
+Oload=3Dwindow.onload;if(!ns61&&ns6||ns6hif){window.onload=3DmOL}else{Min=
+it();sis();window.onload=3DmOL}
+setInterval("MScan()",150);
+
+//function cam(){closeallmenus();if(ParentMenu)ParentMenu.ShM=3D0}
+//if(ns4)_d.captureEvents(Event.MOUSEMOVE)
+//_d.onmouseup=3Dcam;
+
+
+
+------=_NextPart_000_0000_01C862C2.CF01FA90--

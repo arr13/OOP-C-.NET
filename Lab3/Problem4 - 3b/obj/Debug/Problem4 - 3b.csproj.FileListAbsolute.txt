@@ -1,0 +1,9 @@
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem4 - 3b\bin\Debug\Problem4 - 3b.exe.config
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem4 - 3b\bin\Debug\Problem4 - 3b.exe
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem4 - 3b\bin\Debug\Problem4 - 3b.pdb
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem4 - 3b\obj\Debug\Problem4 - 3b.csprojResolveAssemblyReference.cache
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem4 - 3b\obj\Debug\Problem4___3b.Form1.resources
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem4 - 3b\obj\Debug\Problem4___3b.Properties.Resources.resources
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem4 - 3b\obj\Debug\Problem4 - 3b.csproj.GenerateResource.Cache
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem4 - 3b\obj\Debug\Problem4 - 3b.exe
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem4 - 3b\obj\Debug\Problem4 - 3b.pdb

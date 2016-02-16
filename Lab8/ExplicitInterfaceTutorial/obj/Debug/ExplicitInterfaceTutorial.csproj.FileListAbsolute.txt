@@ -1,0 +1,5 @@
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\ExplicitInterfaceTutorial\bin\Debug\ExplicitInterfaceTutorial.exe.config
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\ExplicitInterfaceTutorial\bin\Debug\ExplicitInterfaceTutorial.exe
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\ExplicitInterfaceTutorial\bin\Debug\ExplicitInterfaceTutorial.pdb
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\ExplicitInterfaceTutorial\obj\Debug\ExplicitInterfaceTutorial.exe
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\ExplicitInterfaceTutorial\obj\Debug\ExplicitInterfaceTutorial.pdb

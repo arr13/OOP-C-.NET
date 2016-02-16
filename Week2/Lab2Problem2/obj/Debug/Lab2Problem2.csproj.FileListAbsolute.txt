@@ -1,0 +1,8 @@
+D:\Things\Softuni\Lab2\Week2\Lab2Problem2\bin\Debug\Lab2Problem2.exe.config
+D:\Things\Softuni\Lab2\Week2\Lab2Problem2\bin\Debug\Lab2Problem2.exe
+D:\Things\Softuni\Lab2\Week2\Lab2Problem2\bin\Debug\Lab2Problem2.pdb
+D:\Things\Softuni\Lab2\Week2\Lab2Problem2\obj\Debug\Lab2Problem2.exe
+D:\Things\Softuni\Lab2\Week2\Lab2Problem2\obj\Debug\Lab2Problem2.pdb
+D:\Things\FMI\OOP - C# .NET\Lab2\Week2\Lab2Problem2\bin\Debug\Lab2Problem2.exe.config
+D:\Things\FMI\OOP - C# .NET\Lab2\Week2\Lab2Problem2\obj\Debug\Lab2Problem2.exe
+D:\Things\FMI\OOP - C# .NET\Lab2\Week2\Lab2Problem2\obj\Debug\Lab2Problem2.pdb

@@ -1,0 +1,12 @@
+c:\users\grade\documents\visual studio 2013\Projects\Week1\Lab1Problem3\bin\Debug\Lab1Problem3.exe.config
+c:\users\grade\documents\visual studio 2013\Projects\Week1\Lab1Problem3\bin\Debug\Lab1Problem3.exe
+c:\users\grade\documents\visual studio 2013\Projects\Week1\Lab1Problem3\bin\Debug\Lab1Problem3.pdb
+c:\users\grade\documents\visual studio 2013\Projects\Week1\Lab1Problem3\obj\Debug\Lab1Problem3.csprojResolveAssemblyReference.cache
+c:\users\grade\documents\visual studio 2013\Projects\Week1\Lab1Problem3\obj\Debug\Lab1Problem3.exe
+c:\users\grade\documents\visual studio 2013\Projects\Week1\Lab1Problem3\obj\Debug\Lab1Problem3.pdb
+D:\Things\FMI\OOP - C# .NET\Lab1\Lab1Problem3\bin\Debug\Lab1Problem3.exe.config
+D:\Things\FMI\OOP - C# .NET\Lab1\Lab1Problem3\obj\Debug\Lab1Problem3.exe
+D:\Things\FMI\OOP - C# .NET\Lab1\Lab1Problem3\obj\Debug\Lab1Problem3.pdb
+D:\Things\FMI\OOP - C# .NET\Lab1\Lab1Problem3\bin\Debug\Lab1Problem3.exe
+D:\Things\FMI\OOP - C# .NET\Lab1\Lab1Problem3\bin\Debug\Lab1Problem3.pdb
+D:\Things\FMI\OOP - C# .NET\Lab1\Lab1Problem3\obj\Debug\Lab1Problem3.csprojResolveAssemblyReference.cache

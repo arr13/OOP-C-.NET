@@ -1,0 +1,6 @@
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8-hw\HeavyElement\bin\Debug\HeavyElement.exe.config
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8-hw\HeavyElement\bin\Debug\HeavyElement.exe
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8-hw\HeavyElement\bin\Debug\HeavyElement.pdb
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8-hw\HeavyElement\obj\Debug\HeavyElement.csprojResolveAssemblyReference.cache
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8-hw\HeavyElement\obj\Debug\HeavyElement.exe
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8-hw\HeavyElement\obj\Debug\HeavyElement.pdb

@@ -1,0 +1,9 @@
+D:\Things\Softuni\Lab2\Week2\Lab2Problem1TimeClass\bin\Debug\Lab2Problem1TimeClass.exe.config
+D:\Things\Softuni\Lab2\Week2\Lab2Problem1TimeClass\obj\Debug\Lab2Problem1TimeClass.csprojResolveAssemblyReference.cache
+D:\Things\Softuni\Lab2\Week2\Lab2Problem1TimeClass\bin\Debug\Lab2Problem1TimeClass.exe
+D:\Things\Softuni\Lab2\Week2\Lab2Problem1TimeClass\bin\Debug\Lab2Problem1TimeClass.pdb
+D:\Things\Softuni\Lab2\Week2\Lab2Problem1TimeClass\obj\Debug\Lab2Problem1TimeClass.exe
+D:\Things\Softuni\Lab2\Week2\Lab2Problem1TimeClass\obj\Debug\Lab2Problem1TimeClass.pdb
+D:\Things\FMI\OOP - C# .NET\Lab2\Week2\Lab2Problem1TimeClass\bin\Debug\Lab2Problem1TimeClass.exe.config
+D:\Things\FMI\OOP - C# .NET\Lab2\Week2\Lab2Problem1TimeClass\obj\Debug\Lab2Problem1TimeClass.exe
+D:\Things\FMI\OOP - C# .NET\Lab2\Week2\Lab2Problem1TimeClass\obj\Debug\Lab2Problem1TimeClass.pdb

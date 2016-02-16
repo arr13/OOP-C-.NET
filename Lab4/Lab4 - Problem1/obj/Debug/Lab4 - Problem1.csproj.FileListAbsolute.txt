@@ -1,0 +1,6 @@
+D:\Things\FMI\OOP - C# .NET\Lab4\Lab4 - Problem1\bin\Debug\Lab4 - Problem1.exe.config
+D:\Things\FMI\OOP - C# .NET\Lab4\Lab4 - Problem1\bin\Debug\Lab4 - Problem1.exe
+D:\Things\FMI\OOP - C# .NET\Lab4\Lab4 - Problem1\bin\Debug\Lab4 - Problem1.pdb
+D:\Things\FMI\OOP - C# .NET\Lab4\Lab4 - Problem1\obj\Debug\Lab4 - Problem1.csprojResolveAssemblyReference.cache
+D:\Things\FMI\OOP - C# .NET\Lab4\Lab4 - Problem1\obj\Debug\Lab4 - Problem1.exe
+D:\Things\FMI\OOP - C# .NET\Lab4\Lab4 - Problem1\obj\Debug\Lab4 - Problem1.pdb

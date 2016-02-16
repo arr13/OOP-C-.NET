@@ -1,0 +1,2 @@
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\Lab8-Problem2\bin\Debug\Lab8-Problem2.exe.config
+D:\Things\FMI\OOP - C# .NET\Lab8\Lab8\Lab8-Problem2\obj\Debug\Lab8-Problem2.csprojResolveAssemblyReference.cache

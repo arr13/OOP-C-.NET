@@ -1,0 +1,6 @@
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem3 - 3b\bin\Debug\Problem3 - 3b.exe.config
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem3 - 3b\bin\Debug\Problem3 - 3b.exe
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem3 - 3b\bin\Debug\Problem3 - 3b.pdb
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem3 - 3b\obj\Debug\Problem3 - 3b.csprojResolveAssemblyReference.cache
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem3 - 3b\obj\Debug\Problem3 - 3b.exe
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem3 - 3b\obj\Debug\Problem3 - 3b.pdb

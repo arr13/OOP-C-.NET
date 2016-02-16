@@ -1,0 +1,5 @@
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem6 - 3b\bin\Debug\Problem6 - 3b.exe.config
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem6 - 3b\bin\Debug\Problem6 - 3b.exe
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem6 - 3b\bin\Debug\Problem6 - 3b.pdb
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem6 - 3b\obj\Debug\Problem6 - 3b.exe
+D:\Things\FMI\OOP - C# .NET\Lab3\Problem6 - 3b\obj\Debug\Problem6 - 3b.pdb

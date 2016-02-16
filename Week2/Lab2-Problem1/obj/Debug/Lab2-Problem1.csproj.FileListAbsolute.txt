@@ -1,0 +1,9 @@
+D:\Things\Softuni\Lab2\Week2\Lab2-Problem1\bin\Debug\Lab2-Problem1.exe.config
+D:\Things\Softuni\Lab2\Week2\Lab2-Problem1\obj\Debug\Lab2-Problem1.csprojResolveAssemblyReference.cache
+D:\Things\Softuni\Lab2\Week2\Lab2-Problem1\bin\Debug\Lab2-Problem1.exe
+D:\Things\Softuni\Lab2\Week2\Lab2-Problem1\bin\Debug\Lab2-Problem1.pdb
+D:\Things\Softuni\Lab2\Week2\Lab2-Problem1\obj\Debug\Lab2-Problem1.exe
+D:\Things\Softuni\Lab2\Week2\Lab2-Problem1\obj\Debug\Lab2-Problem1.pdb
+D:\Things\FMI\OOP - C# .NET\Lab2\Week2\Lab2-Problem1\bin\Debug\Lab2-Problem1.exe.config
+D:\Things\FMI\OOP - C# .NET\Lab2\Week2\Lab2-Problem1\obj\Debug\Lab2-Problem1.exe
+D:\Things\FMI\OOP - C# .NET\Lab2\Week2\Lab2-Problem1\obj\Debug\Lab2-Problem1.pdb

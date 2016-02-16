@@ -1,0 +1,6 @@
+D:\Things\Softuni\Lab2\HwLab2\HwLab2\bin\Debug\HwLab2.exe.config
+D:\Things\Softuni\Lab2\HwLab2\HwLab2\bin\Debug\HwLab2.exe
+D:\Things\Softuni\Lab2\HwLab2\HwLab2\bin\Debug\HwLab2.pdb
+D:\Things\Softuni\Lab2\HwLab2\HwLab2\obj\Debug\1.HwLab2.csprojResolveAssemblyReference.cache
+D:\Things\Softuni\Lab2\HwLab2\HwLab2\obj\Debug\HwLab2.exe
+D:\Things\Softuni\Lab2\HwLab2\HwLab2\obj\Debug\HwLab2.pdb
